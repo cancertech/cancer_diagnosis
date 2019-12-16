@@ -68,7 +68,7 @@ python ROIWIndowClassifier.py
 
 Then, you will see the following interface where you can provide the path to a pretrained model, breast biopsy image and output directory.
 
-<img src="./images/ROI_main.jpg" alt="Image description" style="zoom:30%;" />
+<img src="./images/ROI_main.jpg" alt="Image description" width="50%" />
 
 First, Click on "Select Pre-trained Model Path" to select `cancer_diagnosis/models`, which contains `kmeans.pkl`,  `hcluster.pkl` and `clf.pkl`. Then, Click on "Select Input Image" to select the image you want to identify regions-of-interest from (default is `cancer_diagnosis/data/1180_crop.jpg`). You can select one image at a time. Note: This demo is only designed to handle images with a size of fewer than 2^64 pixels. 
 
@@ -76,19 +76,19 @@ First, Click on "Select Pre-trained Model Path" to select `cancer_diagnosis/mode
 
 Here, we show the results for a cropped whole-slide image (`1180_crop.jpg`). 
 
-<img src="./images/1180_crop.jpg" style="zoom:30%;" />
+<img src="./images/1180_crop.jpg" width="50%"/>
 
 The ROIWIndowClassifier can finish processing this provided sample from scratch in about 20 minutes depending on the memory and CPU capacity. To speed up the testing process, the pre-computed feature file `1180_crop_feat.pkl` is included in the package. The progress bar in the interface also shows the progress of feature computation.
 
 In the end, the main window would display the ROI identification results where the regions-of-interest are marked in red boxes.
 
-<img src="./images/ROI_result.jpg" style="zoom:30%;" />
+<img src="./images/ROI_result.jpg" width="50%"/>
 
 ##### Output Files
 
 In the end, the following files will be generated in the output folder provided, which can later be used for ROI segmentation and diagnosis prediction. 
 
-<img src="./images/ROI_files.JPG" style="zoom:100%;" />
+<img src="./images/ROI_files.JPG" style="zoom:100%;"/>
 
 The files are:
 

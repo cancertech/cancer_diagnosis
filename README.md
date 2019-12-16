@@ -41,7 +41,7 @@ prefix: [path_to_anaconda]\envs\cancer_env
 Now, copy the following command into Anaconda Prompt:
 
 ```bash
-conda env create -f requirements.yml
+conda env create -f environment.yml
 ```
 
 The installation may take around 10-20 minutes. After installation, you can proceed to Step 1. 

@@ -55,28 +55,33 @@ def begin_task():
     root.update()
     model_p = model_path.get()
     if model_p == 'Model Path Goes Here':
-        load_model()
+        model_path.set('./models')
+        model_p = model_path.get()
     input_p = input_path.get()
     if input_p == 'Input Image Path Goes Here':
-        get_input()
+        input_path.set('./data/sample.jpg')
+        input_p = input_path.get()
     output_p = output_path.get()
+    if output_p == 'Output Path Goes Here':
+        output_path.set('./output')
+        output_p = output_path.get()
     clf_filename = os.path.join(model_p, 'clf.pkl')
     kmeans_filename = os.path.join(model_p, 'kmeans.pkl')
     hcluster_filename = os.path.join(model_p, 'hcluster.pkl')
     if not os.path.exists(clf_filename):
         clf_filename = filedialog.askopenfilename(initialdir="./",
-        title="Select Trained SVM Model File",
+        title="Select Trained SVM Model File (Clf.pkl)",
         filetypes=(("Pickle File", "*.pkl"),
                    ("all files", "*.*")))
     clf=model_load(clf_filename)
     if not os.path.exists(kmeans_filename):
         kmeans_filename = filedialog.askopenfilename(initialdir="./",
-        title="Select Trained K-Means Model File",
+        title="Select Trained K-Means Model File (kmeans.pkl)",
         filetypes=(("Pickle File", "*.pkl"),
                    ("all files", "*.*")))
     if not os.path.exists(hcluster_filename):
         hcluster_filename = filedialog.askopenfilename(initialdir="./",
-        title="Select Trained H-cluster File",
+        title="Select Trained H-cluster File (hcluster.pkl)",
         filetypes=(("Pickle File", "*.pkl"),
                    ("all files", "*.*")))
     loaded_kmeans = pickle.load(open(kmeans_filename, 'rb'))

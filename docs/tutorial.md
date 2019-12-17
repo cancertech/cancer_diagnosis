@@ -45,7 +45,6 @@ In the end, the following files will be generated in the output folder provided,
 The files are:
 
 - **<u>`1180_crop_0.jpg`</u>**: the resultant ROI image (input to ROI Segmentation)
-- 1180_crop_feat.pkl: the saved feature from the input image (for future use)
 - 1180_crop_marked.jpg: regions-of-interest visualization with identified regions marked in red boxes
 
 

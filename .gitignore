@@ -1,2 +1,13 @@
 output/*
 *.pyc
+
+
+*.swp
+*.swo
+
+*.log
+
+~*
+*~
+*DS_Store
+*DS_STORE

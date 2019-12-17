@@ -86,9 +86,9 @@ out_path_label.grid(row=3, column=1)
 available_memory_GB = psutil.virtual_memory().available / 1024 ** 3
 
 if available_memory_GB > 8: # GB
-    default_batch_size = 10
-elif available_memory_GB > 6:
     default_batch_size = 5
+elif available_memory_GB > 6:
+    default_batch_size = 2
 else:
     default_batch_size = 1
     

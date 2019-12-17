@@ -67,7 +67,7 @@ def begin_task():
         output_p = output_path.get()
     clf_filename = os.path.join(model_p, 'clf.pkl')
     kmeans_filename = os.path.join(model_p, 'kmeans.pkl')
-    hcluster_filename = os.path.join(model_p, 'hcluster.pkl')
+    # hcluster_filename = os.path.join(model_p, 'hcluster.pkl')
     if not os.path.exists(clf_filename):
         clf_filename = filedialog.askopenfilename(initialdir="./",
         title="Select Trained SVM Model File (Clf.pkl)",
@@ -79,13 +79,13 @@ def begin_task():
         title="Select Trained K-Means Model File (kmeans.pkl)",
         filetypes=(("Pickle File", "*.pkl"),
                    ("all files", "*.*")))
-    if not os.path.exists(hcluster_filename):
-        hcluster_filename = filedialog.askopenfilename(initialdir="./",
-        title="Select Trained H-cluster File (hcluster.pkl)",
-        filetypes=(("Pickle File", "*.pkl"),
-                   ("all files", "*.*")))
+    # if not os.path.exists(hcluster_filename):
+    #     hcluster_filename = filedialog.askopenfilename(initialdir="./",
+    #     title="Select Trained H-cluster File (hcluster.pkl)",
+    #     filetypes=(("Pickle File", "*.pkl"),
+    #                ("all files", "*.*")))
     loaded_kmeans = pickle.load(open(kmeans_filename, 'rb'))
-    loaded_hcluster = pickle.load(open(hcluster_filename, 'rb'))
+    # loaded_hcluster = pickle.load(open(hcluster_filename, 'rb'))
     progressbar['value'] = 0
     percent['text'] = "{}%".format(progressbar['value'])
     root.update()
@@ -101,7 +101,8 @@ def begin_task():
                overlap_pixel=2400, padded=True)
     bn = os.path.basename(input_p)
     bn = os.path.splitext(bn)[0]
-    feat_outname = os.path.join(output_p, '{}_feat.pkl'.format(bn))
+    feat_outname = os.path.join(os.path.dirname(input_p),
+                                '{}_feat.pkl'.format(bn))
     if os.path.exists(feat_outname):
         feat = pickle.load(open(feat_outname, 'rb'))
         precomputed = True
@@ -123,8 +124,7 @@ def begin_task():
         if not precomputed:
             try:
                 feat_words = get_feat_from_image(None, False, 120, image=bag)
-                cluster_words = predict_kmeans(feat_words, loaded_kmeans,
-                                               h_cluster=loaded_hcluster)
+                cluster_words = predict_kmeans(feat_words, loaded_kmeans)
                 hist_bag = get_histogram_cluster(cluster_words,
                                                  dict_size=40)
             except np.linalg.LinAlgError:

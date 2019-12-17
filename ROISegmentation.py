@@ -82,7 +82,7 @@ out_path_button = tk.Button(window, text="Select Output Directory",
 out_path_button.grid(row=3, column=0)
 
 out_path_var = tk.StringVar()
-out_path_var.set("./")
+out_path_var.set("output/")
 out_path_label = tk.Label(window, textvariable=out_path_var)
 out_path_label.grid(row=3, column=1)
 

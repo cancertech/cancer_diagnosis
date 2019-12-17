@@ -74,7 +74,7 @@ Note, you should download and install this tool first before reading this tutori
 This is an example of how to use ROIWindowClassifier to detect diagnostically relevant regions of interest in breast biopsy whole slide images.  
 
 
-Double clicking on the `1_ROI.bat` file, as shown below.
+Double click the `1_ROI.bat` file, as shown below.
 
 <img src="docs/tutorial_img/roi_bat.JPG" style="zoom:70%;" />
 
@@ -121,7 +121,7 @@ The files are:
 After you have the resultant ROI image from Step 1, we can now move to ROI segmentations. The following figures illustrate how to use this tool to get segmentation for ROIs. The segmentation results will be used as features for diagnosis prediction. 
 
 
-Double clicking on the `2_Semantic_Segmentation.bat` file, as shown below.
+Double click the `2_Semantic_Segmentation.bat` file, as shown below.
 
 
 <img src="docs/tutorial_img/seg_bat.JPG" style="zoom:70%;" />
@@ -133,6 +133,8 @@ Then you will see the following interface where you can select the model, ROI im
 <br><br>
 
 You should choose one or more ROI images at a time as shown below. Hold the "Control" key if you want to select multiple files, which is the standard multi-file selection in Windows OS. 
+In this example, you can select the "1180_crop_0.jpg" image.
+
 Similarly, you can choose the desired output folder by clicking the "Select Output Directory" button and choose a folder.
 
 <img src="docs/tutorial_img/ynet_page2.JPG" width="70%" align="middle"/>
@@ -197,7 +199,7 @@ The ROI finder (in Step 1 above) usually selects more than one ROI for each subj
 
 
 
-Double clicking on the `3_Diagnosis.bat` file, as shown below.
+Double click the `3_Diagnosis.bat` file, as shown below.
 <img src="docs/tutorial_img/dx_bat.JPG" style="zoom:70%;" />
 
 

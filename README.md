@@ -9,6 +9,8 @@ For more detail information, please visit [our project website](cancertech.cs.wa
 
 # Installation
 
+The installation instructions are shown in Windows operation system. The installation steps are similar for MacOS and Linux.
+
 First, you can download our tools from [Github page](https://github.com/meredith-wenjunwu/cancer_diagnosis) by clicking on the "Clone or download" button first and then clicking on the "Download ZIP" button.
 
 <img src="docs/tutorial_img/download_repo.JPG" width="40%" align="middle"/>
@@ -25,6 +27,8 @@ Unzip `cancer_diagnosis-master.zip`, you will see the following folders:
 - output: output files for all modules (contains pre-computed features for sample image)
 - utils: other supporting source code
 
+Note that the unzipped folder can either be named as "cancer_diagnosis" or "cancer_diagnosis-master", which will not affect how the program runs.
+
 ## Install Anaconda
 
 You need to install Python and dependencies required to run the provided package. We use Anaconda to manage Python dependencies, and you can download the latest version of Anaconda with Python 3.6 or 3.7 from [here](https://www.anaconda.com/distribution/).
@@ -33,41 +37,17 @@ You should follow the instructions as shown in the screenshots below. Pay attent
 Installing Anaconda for all users to the "C:/ProgramData/Anaconda3/" path can make the program running smoothly.
 
 <!-- <img src="docs/tutorial_img/anaconda_1.JPG" width="50%" align="middle"/> 	 -->
-<img src="docs/tutorial_img/anaconda_2.JPG" width="80%" align="middle"/>
-<img src="docs/tutorial_img/anaconda_3.JPG" width="80%" align="middle"/>
-<img src="docs/tutorial_img/anaconda_4.JPG" width="80%" align="middle"/>
-<img src="docs/tutorial_img/anaconda_5.JPG" width="80%" align="middle"/>
+<img src="docs/tutorial_img/anaconda_2.JPG" width="70%" align="middle"/>
+<img src="docs/tutorial_img/anaconda_3.JPG" width="70%" align="middle"/>
+<img src="docs/tutorial_img/anaconda_4.JPG" width="70%" align="middle"/>
+<img src="docs/tutorial_img/anaconda_5.JPG" width="70%" align="middle"/>
 
 
-After installing Anaconda, you can install all the required packages by opening Anaconda Prompt. 
+After installing Anaconda, you can install all the required packages by double clicking on the `0_install_dependencies.bat` file, as shown below.
 
-First, navigate to the folder of `cancer_diagnosis` . 
+<img src="docs/tutorial_img/install_packages.JPG" width="70%" align="middle"/>
 
-<img src="docs/tutorial_img/copy_path.JPG" width="40%" align="middle"/> 	
-
-<br> <br>
-
-<img src="docs/tutorial_img/cd_conda.JPG" width="40%" align="middle"/>
-
-Then, find out the installation path of Anaconda using the command `where conda` in Anaconda Prompt. 
-
-
-<img src="docs/tutorial_img/where_conda.JPG" width="40%" align="middle"/>
-
-
-Open `environment.yml` in `cancer_diagnosis`. Scroll to the last line. Make sure the path to Anaconda (in the above example `C:\Anaconda` ) is the right prefix. Otherwise, replace the last line in the following format: 
-
-```visual basic
-prefix: [path_to_anaconda]\envs\cancer_env
-```
-
-Now, copy the following command into Anaconda Prompt:
-
-```bash
-conda env create -f environment.yml
-```
-
-The installation may take around 10-20 minutes. After installation, you can proceed to Step 1. 
+The installation may take around 10-20 minutes. After installation, you can proceed to tutorial.
 
 <br><br>
 
@@ -77,21 +57,19 @@ In the semantic segmentation part, we will use Convolutional Neural Networks to 
 If you have an Nvidia GPU in your computer, you can [download](https://developer.nvidia.com/cuda-downloads) and install CUDA 10.2 before running our programs.
 
 
-n# Step 1: Get ROI from Whole Slide Image
+
+# Step 1: Get ROI from Whole Slide Image
 This is an example of how to use ROIWindowClassifier to detect diagnostically relevant regions of interest in breast biopsy whole slide images.  
 
-In Anaconda prompt, type in the following command:
 
-```bash
-conda activate cancer_env
-python ROIWIndowClassifier.py
-```
+Double clicking on the `1_ROI.bat` file, as shown below.
+
+<img src="docs/tutorial_img/roi_bat.JPG" style="zoom:70%;" />
 
 Then, you will see the following interface where you can provide the path to a pretrained model, breast biopsy image and output directory.
 
 
 <img src="docs/tutorial_img/ROI_main.jpg" alt="Image description" style="zoom:50%;" />
-
 
 
  First, Click on "Select Pre-trained Model Path" to select `cancer_diagnosis/models`, which contains `kmeans.pkl`,  `hcluster.pkl` and `clf.pkl`. Then, Click on "Select Input Image" to select the image you want to identify regions-of-interest from (default is `cancer_diagnosis/data/1180_crop.jpg`). You can select one image at a time. Note: This demo is only designed to handle images with a size of fewer than 2^64 pixels. 
@@ -127,18 +105,15 @@ The files are:
 
 
 
-
 # Step 2: ROI Segmentations
 After you have the resultant ROI image from Step 1, we can now move to ROI segmentations. The following figures illustrate how to use this tool to get segmentation for ROIs. The segmentation results will be used as features for diagnosis prediction. 
 
-In Anaconda prompt, type in the following command:
 
-<!--Note: If you have deactivated the virtual environment or have reopened Anaconda Prompt, activate virtual environment first with `conda activate cancer_env` (same as Step 1). -->
+Double clicking on the `2_Semantic_Segmentation.bat` file, as shown below.
 
-```bash
-conda activate cancer_env
-python ROISegmentation.py
-```
+
+<img src="docs/tutorial_img/seg_bat.JPG" style="zoom:70%;" />
+
 
 Then you will see the following interface where you can select the model, ROI image, and output directory.
 
@@ -208,14 +183,11 @@ A sample of the CSV file is shown below, which has thousands of rows and columns
 # Step 3: Diagnosis based on Segmentation Results
 The ROI finder (in Step 1 above) usually selects more than one ROI for each subject, because there are often several interesting locations for analysis. The diagnosis prediction is given for each ROI, and the final diagnosis prediction for the subject is the maximum of diagnosis of all ROIs.
 
-In Anaconda prompt, type in the following command:
 
-<!--Note: If you have deactivated the virtual environment or have reopened Anaconda Prompt, activate virtual environment first with `conda activate cancer_env` (same as Step 1). -->
 
-```bash
-conda activate cancer_env
-python Diagnosis.py
-```
+Double clicking on the `3_Diagnosis.bat` file, as shown below.
+<img src="docs/tutorial_img/dx_bat.JPG" style="zoom:70%;" />
+
 
 Then you will see the following interface, where you can select the CSV files generated from the previous step (i.e. ROI segmentation).
 Similar to the previous step, you should select all CSV files in the same window by holding the "Control" key.
@@ -241,4 +213,4 @@ If you have any questions, you can visit the [Github issue page](https://github.
 
 <img src="docs/tutorial_img/user_issue.jpg" width="40%" align="middle"/>
 <br><br>
-n
+

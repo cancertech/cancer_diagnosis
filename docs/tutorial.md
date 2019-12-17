@@ -1,18 +1,15 @@
 # Step 1: Get ROI from Whole Slide Image
 This is an example of how to use ROIWindowClassifier to detect diagnostically relevant regions of interest in breast biopsy whole slide images.  
 
-In Anaconda prompt, type in the following command:
 
-```bash
-conda activate cancer_env
-python ROIWIndowClassifier.py
-```
+Double clicking on the `1_ROI.bat` file, as shown below.
+
+<img src="tutorial_img/roi_bat.JPG" style="zoom:70%;" />
 
 Then, you will see the following interface where you can provide the path to a pretrained model, breast biopsy image and output directory.
 
 
 <img src="tutorial_img/ROI_main.jpg" alt="Image description" style="zoom:50%;" />
-
 
 
  First, Click on "Select Pre-trained Model Path" to select `cancer_diagnosis/models`, which contains `kmeans.pkl`,  `hcluster.pkl` and `clf.pkl`. Then, Click on "Select Input Image" to select the image you want to identify regions-of-interest from (default is `cancer_diagnosis/data/1180_crop.jpg`). You can select one image at a time. Note: This demo is only designed to handle images with a size of fewer than 2^64 pixels. 
@@ -48,18 +45,15 @@ The files are:
 
 
 
-
 # Step 2: ROI Segmentations
 After you have the resultant ROI image from Step 1, we can now move to ROI segmentations. The following figures illustrate how to use this tool to get segmentation for ROIs. The segmentation results will be used as features for diagnosis prediction. 
 
-In Anaconda prompt, type in the following command:
 
-<!--Note: If you have deactivated the virtual environment or have reopened Anaconda Prompt, activate virtual environment first with `conda activate cancer_env` (same as Step 1). -->
+Double clicking on the `2_Semantic_Segmentation.bat` file, as shown below.
 
-```bash
-conda activate cancer_env
-python ROISegmentation.py
-```
+
+<img src="tutorial_img/seg_bat.JPG" style="zoom:70%;" />
+
 
 Then you will see the following interface where you can select the model, ROI image, and output directory.
 
@@ -129,14 +123,11 @@ A sample of the CSV file is shown below, which has thousands of rows and columns
 # Step 3: Diagnosis based on Segmentation Results
 The ROI finder (in Step 1 above) usually selects more than one ROI for each subject, because there are often several interesting locations for analysis. The diagnosis prediction is given for each ROI, and the final diagnosis prediction for the subject is the maximum of diagnosis of all ROIs.
 
-In Anaconda prompt, type in the following command:
 
-<!--Note: If you have deactivated the virtual environment or have reopened Anaconda Prompt, activate virtual environment first with `conda activate cancer_env` (same as Step 1). -->
 
-```bash
-conda activate cancer_env
-python Diagnosis.py
-```
+Double clicking on the `3_Diagnosis.bat` file, as shown below.
+<img src="tutorial_img/dx_bat.JPG" style="zoom:70%;" />
+
 
 Then you will see the following interface, where you can select the CSV files generated from the previous step (i.e. ROI segmentation).
 Similar to the previous step, you should select all CSV files in the same window by holding the "Control" key.

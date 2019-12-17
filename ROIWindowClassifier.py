@@ -61,6 +61,8 @@ def begin_task():
     output_p = output_path.get()
     if output_p == 'Output Path Goes Here':
         output_path.set('./output')
+        if not os.path.exists(output_path.get()):
+            os.mkdir(output_path.get())
         output_p = output_path.get()
     clf_filename = os.path.join(model_p, 'clf.pkl')
     kmeans_filename = os.path.join(model_p, 'kmeans.pkl')

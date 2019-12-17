@@ -1,82 +1,4 @@
-# A Unified Software Package for Cancer Diagnosis
-
-This research is supported by the National Cancer Institute grant U01 CA231782, PI: Linda G. Shapiro, co-PI: Joann G. Elmore
-
-The long-term goal of this project is to develop a unified software package for sharing image analysis and machine learning tools to improve the accuracy and efficiency of cancer diagnosis, thus aiding in improving the quality of both cancer research and clinical practice. Our specific aims are as follows: 1. Regions of Interest: Produce a ROI-finder classifier and associated tools for use by researchers or pathologists for automatic identification of potential ROIs on whole slide images of breast biopsy slides; 2. Diagnosis: Produce a diagnostic classifier and associated tools that can not only suggest the potential diagnosis of a whole slide image, but can also produce the reasons for the diagnosis in terms of regions on the image, their color, their texture, and their structure; 3. Dissemination: Develop a unified software package containing this suite of tools, so they can be easily shared and provided (standalone and through the existing Pathology Image Informatics Platform (PIIP)) to both cancer researchers and clinical pathologists. 
-
-For more detail information, please visit [our project website](cancertech.cs.washington.edu). 
-
-n# Installation
-
-First, you can download our tools from [Github page](https://github.com/meredith-wenjunwu/cancer_diagnosis) by clicking on the "Clone or download" button first and then clicking on the "Download ZIP" button.
-
-<img src="tutorial_img/download_repo.JPG" width="40%" align="middle"/>
-
-<br><br> 
-
-## Files
-
-Unzip `cancer_diagnosis-master.zip`, you will see the following folders:
-
-- YNet: source code for [YNet](https://arxiv.org/abs/1806.01313)
-- data: contains a sample test image
-- models: contains pre-trained models
-- output: output files for all modules (contains pre-computed features for sample image)
-- utils: other supporting source code
-
-## Install Anaconda
-
-You need to install Python and dependencies required to run the provided package. We use Anaconda to manage Python dependencies, and you can download the latest version of Anaconda with Python 3.6 or 3.7 from [here](https://www.anaconda.com/distribution/).
-
-You should follow the instructions as shown in the screenshots below. Pay attention to the buttons marked with red ink.
-Installing Anaconda for all users to the "C:/ProgramData/Anaconda3/" path can make the program running smoothly.
-
-<!-- <img src="tutorial_img/anaconda_1.JPG" width="50%" align="middle"/> 	 -->
-<img src="tutorial_img/anaconda_2.JPG" width="50%" align="middle"/>
-<img src="tutorial_img/anaconda_3.JPG" width="50%" align="middle"/>
-<img src="tutorial_img/anaconda_4.JPG" width="50%" align="middle"/>
-<img src="tutorial_img/anaconda_5.JPG" width="50%" align="middle"/>
-
-
-After installing Anaconda, you can install all the required packages by opening Anaconda Prompt. 
-
-First, navigate to the folder of `cancer_diagnosis` . 
-
-<img src="tutorial_img/copy_path.JPG" width="40%" align="middle"/> 	
-
-<br> <br>
-
-<img src="tutorial_img/cd_conda.JPG" width="40%" align="middle"/>
-
-Then, find out the installation path of Anaconda using the command `where conda` in Anaconda Prompt. 
-
-
-<img src="tutorial_img/where_conda.JPG" width="40%" align="middle"/>
-
-
-Open `environment.yml` in `cancer_diagnosis`. Scroll to the last line. Make sure the path to Anaconda (in the above example `C:\Anaconda` ) is the right prefix. Otherwise, replace the last line in the following format: 
-
-```visual basic
-prefix: [path_to_anaconda]\envs\cancer_env
-```
-
-Now, copy the following command into Anaconda Prompt:
-
-```bash
-conda env create -f environment.yml
-```
-
-The installation may take around 10-20 minutes. After installation, you can proceed to Step 1. 
-
-<br><br>
-
-## Install Cuda (Optional)
-
-In the semantic segmentation part, we will use Convolutional Neural Networks to analyze the input ROI images, and this slow process can be accelerated by using Nvidia GPUs.
-If you have an Nvidia GPU in your computer, you can [download](https://developer.nvidia.com/cuda-downloads) and install CUDA 10.2 before running our programs.
-
-
-n# Step 1: Get ROI from Whole Slide Image
+# Step 1: Get ROI from Whole Slide Image
 This is an example of how to use ROIWindowClassifier to detect diagnostically relevant regions of interest in breast biopsy whole slide images.  
 
 In Anaconda prompt, type in the following command:
@@ -240,4 +162,3 @@ If you have any questions, you can visit the [Github issue page](https://github.
 
 <img src="tutorial_img/user_issue.jpg" width="40%" align="middle"/>
 <br><br>
-n

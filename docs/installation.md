@@ -2,7 +2,10 @@
 
 The installation instructions are shown in Windows operation system. The installation steps are similar for MacOS and Linux.
 
-First, you can download our tools from [Github page](https://github.com/meredith-wenjunwu/cancer_diagnosis) by clicking on the "Clone or download" button first and then clicking on the "Download ZIP" button.
+First, you can download our tools from 
+<a href="https://github.com/meredith-wenjunwu/cancer_diagnosis" target="_blank">Github page</a> 
+by clicking on the "Clone or download" button first and then clicking on the "Download ZIP" button.
+
 
 <img src="tutorial_img/download_repo.JPG" width="40%" align="middle"/>
 
@@ -12,7 +15,7 @@ First, you can download our tools from [Github page](https://github.com/meredith
 
 Unzip `cancer_diagnosis-master.zip`, you will see the following folders:
 
-- YNet: source code for [YNet](https://arxiv.org/abs/1806.01313)
+- YNet: source code for <a href="https://arxiv.org/abs/1806.01313" target="_blank">YNet</a> 
 - data: contains a sample test image
 - models: contains pre-trained models
 - output: output files for all modules (contains pre-computed features for sample image)
@@ -22,7 +25,8 @@ Note that the unzipped folder can either be named as "cancer_diagnosis" or "canc
 
 ## Install Anaconda
 
-You need to install Python and dependencies required to run the provided package. We use Anaconda to manage Python dependencies, and you can download the latest version of Anaconda with Python 3.6 or 3.7 from [here](https://www.anaconda.com/distribution/).
+You need to install Python and dependencies required to run the provided package. We use Anaconda to manage Python dependencies, and you can download the latest version of Anaconda with Python 3.6 or 3.7 from 
+<a href="https://www.anaconda.com/distribution/" target="_blank">here</a> .
 
 You should follow the instructions as shown in the screenshots below. Pay attention to the buttons marked with red ink.
 Installing Anaconda for all users to the "C:/ProgramData/Anaconda3/" path can make the program running smoothly.
@@ -45,6 +49,8 @@ The installation may take around 10-20 minutes. After installation, you can proc
 ## Install Cuda (Optional)
 
 In the semantic segmentation part, we will use Convolutional Neural Networks to analyze the input ROI images, and this slow process can be accelerated by using Nvidia GPUs.
-If you have an Nvidia GPU in your computer, you can [download](https://developer.nvidia.com/cuda-downloads) and install CUDA 10.2 before running our programs.
+If you have an Nvidia GPU in your computer, you can 
+<a href="https://developer.nvidia.com/cuda-downloads" target="_blank">download</a>
+and install CUDA 10.2 before running our programs.
 
 

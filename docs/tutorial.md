@@ -1,3 +1,8 @@
+
+Note, you should download and install this tool first before reading this tutorial. You can follow the 
+<a href="https://cancertech.cs.washington.edu/installation.html" target="_blank">installation page</a> 
+ for instructions.
+
 # Step 1: Get ROI from Whole Slide Image
 This is an example of how to use ROIWindowClassifier to detect diagnostically relevant regions of interest in breast biopsy whole slide images.  
 
@@ -149,7 +154,9 @@ Again, we will choose the largest value (worst diagnosis prediction) as the fina
 
 # User Support
 
-If you have any questions, you can visit the [Github issue page](https://github.com/meredith-wenjunwu/cancer_diagnosis/issues) and submit an issue via the "New issue" button as shown below.
+If you have any questions, you can visit the 
+<a href="https://github.com/meredith-wenjunwu/cancer_diagnosis/issues" target="_blank">Github issue page</a> 
+and submit an issue via the "New issue" button as shown below.
 
 <img src="tutorial_img/user_issue.jpg" width="40%" align="middle"/>
 <br><br>

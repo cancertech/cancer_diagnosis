@@ -16,7 +16,7 @@ root = Tk()
 root.title('MLCD')
 
 model_path = StringVar()
-model_path.set('Model Path Goes Here')
+model_path.set('./models/')
 input_path = StringVar()
 input_path.set('Input Image Path Goes Here')
 output_path = StringVar()
@@ -54,9 +54,6 @@ def load_model():
 def begin_task():
     root.update()
     model_p = model_path.get()
-    if model_p == 'Model Path Goes Here':
-        model_path.set('./models')
-        model_p = model_path.get()
     input_p = input_path.get()
     if input_p == 'Input Image Path Goes Here':
         input_path.set('./data/sample.jpg')
@@ -220,8 +217,8 @@ button_input = Button(root, text="Select Input Image",
 button_predict = Button(root, text="Predict",
                         command=begin_task,
                         width=40, height=2)
-button_trained_model = Button(root, text="Select Pre-trained Model Path",
-                              command=lambda: load_model())
+# button_trained_model = Button(root, text="Select Pre-trained Model Path",
+                              # command=lambda: load_model())
 button_output = Button(root, text="Select Output Path",
                        command=get_outdir)
 # Create a white image
@@ -248,7 +245,7 @@ display_im = ImageTk.PhotoImage(display_im)
 # display_im = ImageTk.PhotoImage(Image.open('./test.jpg'))
 im_label = Label(root, image=display_im)
 percent = Label(root, text="", justify=LEFT)
-model_path_label = Label(root, textvariable=model_path)
+# model_path_label = Label(root, textvariable=model_path)
 progress_label = Label(root, text="Progress: ")
 outpath_label = Label(root, textvariable=output_path)
 inpath_label = Label(root, textvariable=input_path)
@@ -257,11 +254,11 @@ inpath_label = Label(root, textvariable=input_path)
 im_label.grid(row=7, column=0, columnspan=3, pady=15)
 
 button_input.grid(row=2, column=0)
-button_trained_model.grid(row=1, column=0)
+# button_trained_model.grid(row=1, column=0)
 button_output.grid(row=3, column=0)
 button_predict.grid(row=6, column=0, columnspan=3, pady=(5,0))
 
-model_path_label.grid(row=1, column=1)
+# model_path_label.grid(row=1, column=1)
 progress_label.grid(row=4, column=0)
 progressbar.grid(row=4, column=1, pady=(5, 0))
 percent.grid(row=4, column=2, sticky='W')

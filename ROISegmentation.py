@@ -45,7 +45,9 @@ model_path_var.set(default_model_path)
 
 # %%
 def get_img_paths():
-    fn =  tkinter.filedialog.askopenfilenames(initialdir = "./",
+    if not os.path.exists("output"):
+        os.mkdir("output")
+    fn =  tkinter.filedialog.askopenfilenames(initialdir = "output/",
                               title = "Select Image files",
                               filetypes = (("all files","*.*"),
                                            ("TIFF", "*.tiff"), 
@@ -66,7 +68,9 @@ img_paths_label.grid(row=2, column=1)
 
 # %%
 def get_out_dir():
-    d =  tkinter.filedialog.askdirectory(initialdir = "./",
+    if not os.path.exists("output"):
+        os.mkdir("output")
+    d =  tkinter.filedialog.askdirectory(initialdir = "output/",
                               title = "Select Output Directory")
 
     out_path_var.set(d)

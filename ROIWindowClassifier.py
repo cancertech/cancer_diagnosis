@@ -30,7 +30,7 @@ progressbar.place(anchor="w")
 
 def get_input():
     global input_path, output_path
-    filename = filedialog.askopenfilename(initialdir="./",
+    filename = filedialog.askopenfilename(initialdir="data/",
                                           title="Select image file",
                                           filetypes=(("jpeg files", "*.jpg"),
                                                      ("tif flile", "*.tif"),
@@ -47,7 +47,7 @@ def get_input():
 
 def load_model():
     global model_path
-    foldername = filedialog.askdirectory(title='Path to downloaded Models')
+    foldername = filedialog.askdirectory(initialdir="models/", title='Path to downloaded Models')
     model_path.set(foldername)
     #print(model_path.get())
 
@@ -203,7 +203,9 @@ def begin_task():
 
 def get_outdir():
     global output_path
-    foldername = filedialog.askdirectory(title='Select Output Directory')
+    if not os.path.exists("output"):
+        os.mkdir("output")
+    foldername = filedialog.askdirectory(initialdir="output/", title='Select Output Directory')
     output_path.set(foldername)
 
 

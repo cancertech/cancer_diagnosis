@@ -8,6 +8,7 @@ import pickle
 import os
 import pdb
 
+
 # %% Define the feature names and features to use
 model = pickle.load(open("./models/dx_mlp_model.pickle", "rb"))
 
@@ -40,7 +41,9 @@ l.grid(row=0, column=0, columnspan=3)
 
 # %%
 def get_csv_paths():
-    fn =  tkinter.filedialog.askopenfilenames(initialdir = "./",
+    if not os.path.exists("output"):
+        os.mkdir("output")
+    fn =  tkinter.filedialog.askopenfilenames(initialdir = "output/",
                               title = "Select CSV files",
                               filetypes = (("CSV", "*.csv"),
                                            ("all files","*.*")))

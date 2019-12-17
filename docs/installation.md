@@ -24,10 +24,10 @@ You should follow the instructions as shown in the screenshots below. Pay attent
 Installing Anaconda for all users to the "C:/ProgramData/Anaconda3/" path can make the program running smoothly.
 
 <!-- <img src="tutorial_img/anaconda_1.JPG" width="50%" align="middle"/> 	 -->
-<img src="tutorial_img/anaconda_2.JPG" width="50%" align="middle"/>
-<img src="tutorial_img/anaconda_3.JPG" width="50%" align="middle"/>
-<img src="tutorial_img/anaconda_4.JPG" width="50%" align="middle"/>
-<img src="tutorial_img/anaconda_5.JPG" width="50%" align="middle"/>
+<img src="tutorial_img/anaconda_2.JPG" width="80%" align="middle"/>
+<img src="tutorial_img/anaconda_3.JPG" width="80%" align="middle"/>
+<img src="tutorial_img/anaconda_4.JPG" width="80%" align="middle"/>
+<img src="tutorial_img/anaconda_5.JPG" width="80%" align="middle"/>
 
 
 After installing Anaconda, you can install all the required packages by opening Anaconda Prompt. 

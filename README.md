@@ -6,11 +6,12 @@ The long-term goal of this project is to develop a unified software package for 
 
 For more detail information, please visit [our project website](cancertech.cs.washington.edu). 
 
-n# Installation
+
+# Installation
 
 First, you can download our tools from [Github page](https://github.com/meredith-wenjunwu/cancer_diagnosis) by clicking on the "Clone or download" button first and then clicking on the "Download ZIP" button.
 
-<img src="tutorial_img/download_repo.JPG" width="40%" align="middle"/>
+<img src="docs/tutorial_img/download_repo.JPG" width="40%" align="middle"/>
 
 <br><br> 
 
@@ -31,27 +32,27 @@ You need to install Python and dependencies required to run the provided package
 You should follow the instructions as shown in the screenshots below. Pay attention to the buttons marked with red ink.
 Installing Anaconda for all users to the "C:/ProgramData/Anaconda3/" path can make the program running smoothly.
 
-<!-- <img src="tutorial_img/anaconda_1.JPG" width="50%" align="middle"/> 	 -->
-<img src="tutorial_img/anaconda_2.JPG" width="50%" align="middle"/>
-<img src="tutorial_img/anaconda_3.JPG" width="50%" align="middle"/>
-<img src="tutorial_img/anaconda_4.JPG" width="50%" align="middle"/>
-<img src="tutorial_img/anaconda_5.JPG" width="50%" align="middle"/>
+<!-- <img src="docs/tutorial_img/anaconda_1.JPG" width="50%" align="middle"/> 	 -->
+<img src="docs/tutorial_img/anaconda_2.JPG" width="80%" align="middle"/>
+<img src="docs/tutorial_img/anaconda_3.JPG" width="80%" align="middle"/>
+<img src="docs/tutorial_img/anaconda_4.JPG" width="80%" align="middle"/>
+<img src="docs/tutorial_img/anaconda_5.JPG" width="80%" align="middle"/>
 
 
 After installing Anaconda, you can install all the required packages by opening Anaconda Prompt. 
 
 First, navigate to the folder of `cancer_diagnosis` . 
 
-<img src="tutorial_img/copy_path.JPG" width="40%" align="middle"/> 	
+<img src="docs/tutorial_img/copy_path.JPG" width="40%" align="middle"/> 	
 
 <br> <br>
 
-<img src="tutorial_img/cd_conda.JPG" width="40%" align="middle"/>
+<img src="docs/tutorial_img/cd_conda.JPG" width="40%" align="middle"/>
 
 Then, find out the installation path of Anaconda using the command `where conda` in Anaconda Prompt. 
 
 
-<img src="tutorial_img/where_conda.JPG" width="40%" align="middle"/>
+<img src="docs/tutorial_img/where_conda.JPG" width="40%" align="middle"/>
 
 
 Open `environment.yml` in `cancer_diagnosis`. Scroll to the last line. Make sure the path to Anaconda (in the above example `C:\Anaconda` ) is the right prefix. Otherwise, replace the last line in the following format: 
@@ -89,34 +90,34 @@ python ROIWIndowClassifier.py
 Then, you will see the following interface where you can provide the path to a pretrained model, breast biopsy image and output directory.
 
 
-<img src="tutorial_img/ROI_main.jpg" alt="Image description" style="zoom:50%;" />
+<img src="docs/tutorial_img/ROI_main.jpg" alt="Image description" style="zoom:50%;" />
 
 
 
  First, Click on "Select Pre-trained Model Path" to select `cancer_diagnosis/models`, which contains `kmeans.pkl`,  `hcluster.pkl` and `clf.pkl`. Then, Click on "Select Input Image" to select the image you want to identify regions-of-interest from (default is `cancer_diagnosis/data/1180_crop.jpg`). You can select one image at a time. Note: This demo is only designed to handle images with a size of fewer than 2^64 pixels. 
 
-<img src="tutorial_img/ROI_select_input.jpg" style="zoom:50%;" />
+<img src="docs/tutorial_img/ROI_select_input.jpg" style="zoom:50%;" />
 
 
 ### Example for ROI Identification
 
 Here, we show the results for a cropped whole-slide image (`1180_crop.jpg`). 
 
-<img src="tutorial_img/1180_crop.jpg" style="zoom:50%;" />
+<img src="docs/tutorial_img/1180_crop.jpg" style="zoom:50%;" />
 
 The ROIWIndowClassifier can finish processing this provided sample from scratch in about 20 minutes depending on the memory and CPU capacity. To speed up the testing process, the pre-computed feature file `1180_crop_feat.pkl` is included in the package. The progress bar in the interface also shows the progress of feature computation.
 
-<img src="tutorial_img/ROI_inprogress.JPG" style="zoom:50%;" />
+<img src="docs/tutorial_img/ROI_inprogress.JPG" style="zoom:50%;" />
 
 In the end, the main window would display the ROI identification results where the regions-of-interest are marked in red boxes.
 
-<img src="tutorial_img/ROI_result.jpg" style="zoom:50%;" />
+<img src="docs/tutorial_img/ROI_result.jpg" style="zoom:50%;" />
 
 ##### Output Files
 
 In the end, the following files will be generated in the output folder provided, which can later be used for ROI segmentation and diagnosis prediction. 
 
-<img src="tutorial_img/ROI_files.JPG" style="zoom:100%;" />
+<img src="docs/tutorial_img/ROI_files.JPG" style="zoom:100%;" />
 
 The files are:
 
@@ -141,13 +142,13 @@ python ROISegmentation.py
 
 Then you will see the following interface where you can select the model, ROI image, and output directory.
 
-<img src="tutorial_img/ynet_page1.JPG" width="70%" align="middle"/>
+<img src="docs/tutorial_img/ynet_page1.JPG" width="70%" align="middle"/>
 <br><br>
 
 You should choose one or more ROI images at a time as shown below. Hold the "Control" key if you want to select multiple files, which is the standard multi-file selection in Windows OS. 
 Similarly, you can choose the desired output folder by clicking the "Select Output Directory" button and choose a folder.
 
-<img src="tutorial_img/ynet_page2.JPG" width="70%" align="middle"/>
+<img src="docs/tutorial_img/ynet_page2.JPG" width="70%" align="middle"/>
 <br><br>
 
 
@@ -178,13 +179,13 @@ Here, we show the results for the detected ROI from the first step.
 ### Input ROIs
 This ROI is chosen by the "Select Images".
 
-<img src="tutorial_img/1180_crop_0.jpg" width="40%" align="middle"/>
+<img src="docs/tutorial_img/1180_crop_0.jpg" width="40%" align="middle"/>
 
 ### Output Files
 The CNN can finish processing these two ROIs after a 1-hour process on CPU or 10-minute process on GPU (Nvidia GTX 1080 Ti). Note that there are over 0.8 billion pixels in these two ROIs.
 The following files are generated in the output folder, which can be used for visualization and diagnosis prediction.
 
-<img src="tutorial_img/1180_files.JPG" width="20%" align="middle"/>
+<img src="docs/tutorial_img/1180_files.JPG" width="20%" align="middle"/>
 
 The files are:
 
@@ -195,12 +196,12 @@ The files are:
 ### Visualize Segmentation Mask
 Here we show the segmentation visualization images. 
 
-<img src="tutorial_img/1180_crop_0_seg_viz.png" width="40%" align="middle"/>
+<img src="docs/tutorial_img/1180_crop_0_seg_viz.png" width="40%" align="middle"/>
 
 
 
 A sample of the CSV file is shown below, which has thousands of rows and columns that will be used as features for the machine learning algorithm for diagnosis prediction.
-<img src="tutorial_img/segmentation_csv_viz.JPG" width="80%" align="middle"/>
+<img src="docs/tutorial_img/segmentation_csv_viz.JPG" width="80%" align="middle"/>
 
 
 
@@ -219,25 +220,25 @@ python Diagnosis.py
 Then you will see the following interface, where you can select the CSV files generated from the previous step (i.e. ROI segmentation).
 Similar to the previous step, you should select all CSV files in the same window by holding the "Control" key.
 
-<img src="tutorial_img/dx_page1.JPG" width="70%" align="middle"/>
+<img src="docs/tutorial_img/dx_page1.JPG" width="70%" align="middle"/>
 <br><br>
 
 Then, you can click on the "Begin Classification" button, and the program will produce the result in another window.
 Note that this step is super fast, which takes less than 10 seconds for each CSV file.
 
-<img src="tutorial_img/dx_page2.JPG" width="70%" align="middle"/>
+<img src="docs/tutorial_img/dx_page2.JPG" width="70%" align="middle"/>
 <br><br>
 
 Here, the red font shows the prediction for the input CSV files.
 Again, we will choose the largest value (worst diagnosis prediction) as the final prediction for the subject if multiple ROIs are extracted from Step 1.
 
-<img src="tutorial_img/dx_page3.JPG" width="70%" align="middle"/>
+<img src="docs/tutorial_img/dx_page3.JPG" width="70%" align="middle"/>
 <br><br>
 
 # User Support
 
 If you have any questions, you can visit the [Github issue page](https://github.com/meredith-wenjunwu/cancer_diagnosis/issues) and submit an issue via the "New issue" button as shown below.
 
-<img src="tutorial_img/user_issue.jpg" width="40%" align="middle"/>
+<img src="docs/tutorial_img/user_issue.jpg" width="40%" align="middle"/>
 <br><br>
 n

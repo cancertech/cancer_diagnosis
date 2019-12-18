@@ -51,6 +51,11 @@ If you see a "Windows protected your PC" window as below. You can first click on
 
 <img src="tutorial_img/windows_protect.png" width="110%" align="middle"/>
 
+When the installation is done, you can see a similar message as shown below.
+
+<img src="tutorial_img/package_install_done.JPG" width="70%" align="middle"/>
+
+
 <br><br>
 
 ## (Optional) Install CUDA for Nvidia GPU Only

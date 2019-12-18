@@ -37,18 +37,23 @@ def viz_segmentation_countour(img, label_mask, border_color=[1, 0, 0], border_wi
     gradient = 2 * label_mask - binary_mask_shift_x - binary_mask_shift_y
     gradient_mask = gradient != 0
     
-    kernel = np.ones((border_width, border_width),np.uint8)
     
-#    pdb.set_trace()
-    gradient_mask = cv2.dilate(gradient_mask.astype(np.uint8), kernel, iterations = 1)
+    if border_width > 1:
+        kernel = np.ones((border_width, border_width),np.uint8)
+        gradient_mask = cv2.dilate(gradient_mask.astype(np.uint8), kernel, iterations=1)
     
     gradient_mask = gradient_mask.astype(bool)
     
     countours_img = img.copy()
     
-    countours_img[gradient_mask, :] = border_color
+    if len(countours_img.shape) >= 3:
+        countours_img[gradient_mask, :] = border_color
+    else:        
+        countours_img[gradient_mask] = border_color
+
     
-    imageio.imsave(os.path.join(output_dir, "countour_with_gradient.jpg"),
+    if output_dir is not None:
+        imageio.imsave(os.path.join(output_dir, "countour_with_gradient.jpg"),
                    countours_img)
     
     return countours_img

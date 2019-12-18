@@ -1,4 +1,4 @@
-from utils.segmentation_features import segmentation_features_from_csv
+from utils.mid_level_feature_classifier import classify_files
 import numpy as np
 
 import tkinter as tk
@@ -10,23 +10,10 @@ import pdb
 
 
 # %% Define the feature names and features to use
-model = pickle.load(open("./models/dx_mlp_model.pickle", "rb"))
+model = pickle.load(open("./models/mid_level_classifier_weights.pickle", "rb"))
 
 DX_LABELS = ["Benign", "Atypia", "DCIS", "Invasive"]
 
-# Define the feature names
-ncols = 147
-input_col_names = ["row_id", "col_id", "x0", "x1", "y0", "y1",]    
-
-# columns that need to be extracted from the DF
-extract_cols = ["dx_prob_0", "dx_prob_1", "dx_prob_2", "dx_prob_3", "dx_prob_4",]
-extract_cols += ["feature_%d" % _ for _ in range(ncols - 11)]    
-input_col_names += extract_cols
-
-# columns that will be used for ML
-# feat_cols = extract_cols + ["dx_prob_dx_%d_hist_%d" % (dx_id, hist_id) for dx_id in range(5) for hist_id in range(10)]    
-# feat_cols = input_col_names + feat_cols
-# 
 # %%
 
 window = tk.Tk()
@@ -45,7 +32,7 @@ def get_csv_paths():
         os.mkdir("output")
     fn =  tkinter.filedialog.askopenfilenames(initialdir = "output/",
                               title = "Select CSV files",
-                              filetypes = (("CSV", "*.csv"),
+                              filetypes = (("Co-occurence Features", "*SuperpixelCooccurrence.csv"),
                                            ("all files","*.*")))
 
     csv_paths_var.set(fn)
@@ -71,27 +58,13 @@ def begin_dx_classification():
     rst_txt =  ""
     preds = []
     
-    for csv_path in csv_paths:
-        try:
-            features = segmentation_features_from_csv(csv_path, input_col_names, extract_cols)
-            features = np.array(features).reshape(1, -1)
-            pred = model.predict(features)[0]
-            # prob = model.predict_proba(features)[0][pred - 1]
-            pred_label = DX_LABELS[pred - 1]
-            preds.append(pred)
-            results[csv_path] = pred
-            rst_txt += "%s Preidciton: %d (%s)\n" % (os.path.basename(csv_path), pred, pred_label)
-        except Exception as e:
-            window2 = tk.Tk()
-            tk.Message(window2,
-                       text=str(csv_path) + " Error encountered!\n" + str(e),
-                       width=800,
-                       bg="white",
-                       font=('Arial', 20)
-                       ).pack()
+    rst = classify_files(model, csv_paths)
     
-            continue
-
+    for k in rst.keys():
+        pred, pred_label = rst[k]
+        rst_txt += "%s Preidciton: %d (%s)\n" % (k, pred, pred_label)
+        preds.append(pred)
+        
     max_pred = np.max(preds)
     rst_txt += "\nFinal Preidciton: %d (%s)\n" % (max_pred, DX_LABELS[max_pred - 1])
 

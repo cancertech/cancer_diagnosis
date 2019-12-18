@@ -102,7 +102,7 @@ The 8 semantic segmentation classes  are:
 8. Necrosis
 -->
 
-<img src="tutorial_img/seg_color_map.png" width="70%" align="middle"/>
+<img src="tutorial_img/seg_color_map.png" width="40%" align="middle"/>
 <br><br>
 
 
@@ -118,22 +118,28 @@ This ROI is chosen by the "Select Images".
 The CNN can finish processing these two ROIs after a 1-hour process on CPU or 10-minute process on GPU (Nvidia GTX 1080 Ti). Note that there are over 0.8 billion pixels in these two ROIs.
 The following files are generated in the output folder, which can be used for visualization and diagnosis prediction.
 
-<img src="tutorial_img/1180_files.JPG" width="20%" align="middle"/>
+<img src="tutorial_img/1180_files.JPG" width="30%" align="middle"/>
 
 The files are:
 
-* `_seg_label.png` (segmentation label), where the masks are stored.
-* `_seg_viz.png` (segmentation visualization)
+* `_seg_label.png` (CNN semantic segmentation label), where the masks are stored.
+* `_seg_viz.png` (CNN semantic segmentation visualization)
+* `_seg_sp_viz.png` (visualization based on Superpixel majority voting result)
 * `csv` (features for all tiles) files.
+* `log` (intermediate file), which is used for debugging
 
 ### Visualize Segmentation Mask
-Here we show the segmentation visualization images. 
+An example of segmentation visualization image is shown below.
 
 <img src="tutorial_img/1180_crop_0_seg_viz.png" width="40%" align="middle"/>
 
+An example of segmentation visualization based on majority voting in Superpixels is shown below.
+
+<img src="tutorial_img/1180_crop_0_seg_sp_viz.png" width="40%" align="middle"/>
 
 
-A sample of the CSV file is shown below, which has thousands of rows and columns that will be used as features for the machine learning algorithm for diagnosis prediction.
+A sample of the CSV files is shown below. The "SuperpixelFrequency.csv" and "SuperpixelCooccurence.csv" files contain different features for the machine learning algorithm for diagnosis prediction. Both files are needed.
+
 <img src="tutorial_img/segmentation_csv_viz.JPG" width="80%" align="middle"/>
 
 
@@ -148,7 +154,9 @@ Double click the `3_Diagnosis.bat` file, as shown below.
 
 
 Then you will see the following interface, where you can select the CSV files generated from the previous step (i.e. ROI segmentation).
-Similar to the previous step, you should select all CSV files in the same window by holding the "Control" key.
+Similar to the previous step, you should select all CSV files in the same window by holding the "Control" key. 
+
+You only need to select visible CSV files (e.g. for Superpixel Co-occurence features), and the program can find all other files and features needed for the diagnosis.
 
 <img src="tutorial_img/dx_page1.JPG" width="70%" align="middle"/>
 <br><br>

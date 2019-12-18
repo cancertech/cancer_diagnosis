@@ -1,4 +1,4 @@
-from run_ynet import process
+from utils.pixel_classification import process
 
 import tkinter as tk
 import tkinter.filedialog

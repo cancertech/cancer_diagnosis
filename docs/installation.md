@@ -38,7 +38,7 @@ Installing Anaconda for all users to the "C:/ProgramData/Anaconda3/" path can ma
 <img src="tutorial_img/anaconda_5.JPG" width="70%" align="middle"/>
 
 
-# Install Dependencies
+## Install Dependencies
 
 After installing Anaconda, you can install all the required packages by double clicking on the `0_install_dependencies.bat` file, as shown below.
 
@@ -64,5 +64,15 @@ In the semantic segmentation part, we will use Convolutional Neural Networks to 
 If you have an Nvidia GPU in your computer, you can 
 <a href="https://developer.nvidia.com/cuda-downloads" target="_blank">download</a>
 and install CUDA 10.2 before running our programs.
+
+## Supported Image Formats
+
+We support PNG, JPG, TIFF, SVS, and many other image formats for MacOS and Linux. Unfortunately, we do not support SVS for Windows machine at the current stage, but you can easily convert your SVS files to JPG files by using
+<a href="https://www.reaconverter.com/convert/svs_to_jpg.html" target="_blank">this converter</a>.
+
+All common image formats will be supported through 
+<a href="https://pathcore.com/sedeen/" target="_blank">Sedeen Viewer</a> in Windows soon.
+
+
 
 

@@ -48,7 +48,7 @@ Installing Anaconda for all users to the "C:/ProgramData/Anaconda3/" path can ma
 <img src="docs/tutorial_img/anaconda_5.JPG" width="70%" align="middle"/>
 
 
-# Install Dependencies
+## Install Dependencies
 
 After installing Anaconda, you can install all the required packages by double clicking on the `0_install_dependencies.bat` file, as shown below.
 
@@ -75,6 +75,16 @@ If you have an Nvidia GPU in your computer, you can
 <a href="https://developer.nvidia.com/cuda-downloads" target="_blank">download</a>
 and install CUDA 10.2 before running our programs.
 
+## Supported Image Formats
+
+We support PNG, JPG, TIFF, SVS, and many other image formats for MacOS and Linux. Unfortunately, we do not support SVS for Windows machine at the current stage, but you can easily convert your SVS files to JPG files by using
+<a href="https://www.reaconverter.com/convert/svs_to_jpg.html" target="_blank">this converter</a>.
+
+All common image formats will be supported through 
+<a href="https://pathcore.com/sedeen/" target="_blank">Sedeen Viewer</a> in Windows soon.
+
+
+
 
 
 
@@ -93,7 +103,7 @@ Double click the `1_ROI.bat` file, as shown below.
 
 Then, you will see the following interface where you can provide the path to a breast biopsy image and output directory.
 
-<img src="/docs/tutorial_img/ROI_main.jpg" alt="Image description" style="zoom:50%;" />
+<img src="docs/tutorial_img/ROI_main.jpg" alt="Image description" style="zoom:50%;" />
 
 
 First, click on "Select Input Image" to select the image you want to identify regions-of-interest from (default is `cancer_diagnosis-master/data/1180_crop.jpg`). You can select one image at a time (supported format is the same as [opencv](https://docs.opencv.org/3.4/d4/da8/group__imgcodecs.html#ga288b8b3da0892bd651fce07b3bbd3a56)) . Note: This demo is only designed to handle images with a size of fewer than 2^64 pixels. 

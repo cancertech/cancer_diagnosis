@@ -99,7 +99,7 @@ Next, click on "Select Output Path" to select where you want the output files to
 
 <img src="docs/tutorial_img/ROI_select_output.jpg" style="zoom:50%;" />
 
-Last, click on "Predict" to start the ROI detection process. Please see below for expected outcome. 
+Lastly, click on "Predict" to start the ROI detection process. Please see below for expected outcome. 
 
 <img src="docs/tutorial_img/ROI_predict.jpg" style="zoom:50%;" />
 

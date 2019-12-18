@@ -14,14 +14,20 @@ Double click the `1_ROI.bat` file, as shown below.
 
 Then, you will see the following interface where you can provide the path to a pretrained model, breast biopsy image and output directory.
 
+<img src="/tutorial_img/ROI_main.jpg" alt="Image description" style="zoom:50%;" />
 
-<img src="tutorial_img/ROI_main.jpg" alt="Image description" style="zoom:50%;" />
 
-
- First, Click on "Select Pre-trained Model Path" to select `cancer_diagnosis/models`, which contains `kmeans.pkl`,  `hcluster.pkl` and `clf.pkl`. Then, Click on "Select Input Image" to select the image you want to identify regions-of-interest from (default is `cancer_diagnosis/data/1180_crop.jpg`). You can select one image at a time. Note: This demo is only designed to handle images with a size of fewer than 2^64 pixels. 
+First, click on "Select Input Image" to select the image you want to identify regions-of-interest from (default is `cancer_diagnosis-master/data/1180_crop.jpg`). You can select one image at a time (supported format is the same as [opencv](https://docs.opencv.org/3.4/d4/da8/group__imgcodecs.html#ga288b8b3da0892bd651fce07b3bbd3a56)) . Note: This demo is only designed to handle images with a size of fewer than 2^64 pixels. 
 
 <img src="tutorial_img/ROI_select_input.jpg" style="zoom:50%;" />
 
+Next, click on "Select Output Path" to select where you want the output files to be saved. The default is `cancer_diagnosis-master/output`. Use "Select Folder" button to confirm the selection. 
+
+<img src="tutorial_img/ROI_select_output.jpg" style="zoom:50%;" />
+
+Last, click on "Predict" to start the ROI detection process. Please see below for expected outcome. 
+
+<img src="tutorial_img/ROI_predict.jpg" style="zoom:50%;" />
 
 ### Example for ROI Identification
 

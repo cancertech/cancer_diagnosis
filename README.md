@@ -91,7 +91,7 @@ Double click the `1_ROI.bat` file, as shown below.
 
 <img src="docs/tutorial_img/roi_bat.JPG" style="zoom:70%;" />
 
-Then, you will see the following interface where you can provide the path to a pretrained model, breast biopsy image and output directory.
+Then, you will see the following interface where you can provide the path to a breast biopsy image and output directory.
 
 <img src="/docs/tutorial_img/ROI_main.jpg" alt="Image description" style="zoom:50%;" />
 

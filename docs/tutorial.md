@@ -12,9 +12,9 @@ Double click the `1_ROI.bat` file, as shown below.
 
 <img src="tutorial_img/roi_bat.JPG" style="zoom:70%;" />
 
-Then, you will see the following interface where you can provide the path to a pretrained model, breast biopsy image and output directory.
+Then, you will see the following interface where you can provide the path to a breast biopsy image and output directory.
 
-<img src="/tutorial_img/ROI_main.jpg" alt="Image description" style="zoom:50%;" />
+<img src="tutorial_img/ROI_main.jpg" alt="Image description" style="zoom:50%;" />
 
 
 First, click on "Select Input Image" to select the image you want to identify regions-of-interest from (default is `cancer_diagnosis-master/data/1180_crop.jpg`). You can select one image at a time (supported format is the same as [opencv](https://docs.opencv.org/3.4/d4/da8/group__imgcodecs.html#ga288b8b3da0892bd651fce07b3bbd3a56)) . Note: This demo is only designed to handle images with a size of fewer than 2^64 pixels. 

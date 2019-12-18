@@ -1,4 +1,5 @@
 
+
 Note, you should download and install this tool first before reading this tutorial. You can follow the 
 <a href="https://cancertech.cs.washington.edu/installation.html" target="_blank">installation page</a> 
  for instructions.
@@ -84,7 +85,8 @@ If the ROI contains more than 1 billion pixels, then it might take over an hour 
 
 The 8 semantic segmentation classes  are:
 
-1. Backgrounds
+<!--
+1. Backgrounds 
 2. Benign Epithelium
 3. malignant Epithelium
 4. Normal Stroma
@@ -92,6 +94,10 @@ The 8 semantic segmentation classes  are:
 6. Secretion
 7. Blood
 8. Necrosis
+-->
+
+<img src="tutorial_img/seg_color_map.png" width="70%" align="middle"/>
+<br><br>
 
 
 ## Examples for ROI Segmentation

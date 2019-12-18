@@ -48,20 +48,28 @@ Installing Anaconda for all users to the "C:/ProgramData/Anaconda3/" path can ma
 <img src="docs/tutorial_img/anaconda_5.JPG" width="70%" align="middle"/>
 
 
+# Install Dependencies
+
 After installing Anaconda, you can install all the required packages by double clicking on the `0_install_dependencies.bat` file, as shown below.
 
 <img src="docs/tutorial_img/install_packages.JPG" width="70%" align="middle"/>
 
 The installation may take around 10-20 minutes. After installation, you can proceed to tutorial.
 
+
+If you see a "Windows protected your PC" window as below. You can first click on the "More Info" button and then "Run anyway" button to allow our program to run. 
+
+<img src="docs/tutorial_img/windows_protect.png" width="110%" align="middle"/>
+
 <br><br>
 
-## Install Cuda (Optional)
+## (Optional) Install CUDA for Nvidia GPU Only
 
 In the semantic segmentation part, we will use Convolutional Neural Networks to analyze the input ROI images, and this slow process can be accelerated by using Nvidia GPUs.
 If you have an Nvidia GPU in your computer, you can 
 <a href="https://developer.nvidia.com/cuda-downloads" target="_blank">download</a>
 and install CUDA 10.2 before running our programs.
+
 
 
 
@@ -112,7 +120,6 @@ In the end, the following files will be generated in the output folder provided,
 The files are:
 
 - **<u>`1180_crop_0.jpg`</u>**: the resultant ROI image (input to ROI Segmentation)
-- 1180_crop_feat.pkl: the saved feature from the input image (for future use)
 - 1180_crop_marked.jpg: regions-of-interest visualization with identified regions marked in red boxes
 
 
@@ -152,7 +159,8 @@ If the ROI contains more than 1 billion pixels, then it might take over an hour 
 
 The 8 semantic segmentation classes  are:
 
-1. Backgrounds
+<!--
+1. Backgrounds 
 2. Benign Epithelium
 3. malignant Epithelium
 4. Normal Stroma
@@ -160,6 +168,10 @@ The 8 semantic segmentation classes  are:
 6. Secretion
 7. Blood
 8. Necrosis
+-->
+
+<img src="docs/tutorial_img/seg_color_map.png" width="70%" align="middle"/>
+<br><br>
 
 
 ## Examples for ROI Segmentation

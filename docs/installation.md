@@ -38,15 +38,22 @@ Installing Anaconda for all users to the "C:/ProgramData/Anaconda3/" path can ma
 <img src="tutorial_img/anaconda_5.JPG" width="70%" align="middle"/>
 
 
+# Install Dependencies
+
 After installing Anaconda, you can install all the required packages by double clicking on the `0_install_dependencies.bat` file, as shown below.
 
 <img src="tutorial_img/install_packages.JPG" width="70%" align="middle"/>
 
 The installation may take around 10-20 minutes. After installation, you can proceed to tutorial.
 
+
+If you see a "Windows protected your PC" window as below. You can first click on the "More Info" button and then "Run anyway" button to allow our program to run. 
+
+<img src="tutorial_img/windows_protect.png" width="110%" align="middle"/>
+
 <br><br>
 
-## Install Cuda (Optional)
+## (Optional) Install CUDA for Nvidia GPU Only
 
 In the semantic segmentation part, we will use Convolutional Neural Networks to analyze the input ROI images, and this slow process can be accelerated by using Nvidia GPUs.
 If you have an Nvidia GPU in your computer, you can 

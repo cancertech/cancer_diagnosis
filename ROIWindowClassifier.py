@@ -12,6 +12,7 @@ import os
 os.environ['OPENCV_IO_MAX_IMAGE_PIXELS']=str(2**64)
 import cv2
 
+
 root = Tk()
 root.title('MLCD')
 
@@ -22,6 +23,15 @@ input_path.set('Input Image Path Goes Here')
 output_path = StringVar()
 output_path.set('Output Path Goes Here')
 run_flag = BooleanVar()
+openslide_flag = BooleanVar()
+openslide_flag.set(True)
+try:
+    import openslide
+except (ImportError, OSError):
+    openslide_flag.set(False)
+    import warnings
+    warnings.warn('Cannot support SVS format and large TIF files',
+                  ImportWarning)
 
 progressbar = Progressbar(root, orient=HORIZONTAL,
                           length=250,mode='determinate')
@@ -88,21 +98,57 @@ def begin_task():
     progressbar['value'] = 0
     percent['text'] = "{}%".format(progressbar['value'])
     root.update()
-    im_BGR = cv2.imread(input_p)
-    if im_BGR is None:
-        messagebox.showerror("Error", "CV2 image read error: image must " +
-                                      "have less than 2^64 pixels")
 
-    im = cv2.cvtColor(im_BGR, cv2.COLOR_BGR2RGB)
-    im = np.array(im, dtype=np.uint8)
-    output = np.empty((im.shape[0], im.shape[1]))
-    bags = Bag(img=im, size=3600,
-               overlap_pixel=2400, padded=True)
+    filename, ext = os.path.splitext(input_p)
+    if ext == '.SVS':
+        if openslide_flag.get():
+            im_os = openslide.OpenSlide(input_p)
+            im_size = (im_os.dimensions[1], im_os.dimensions[0])
+            if im_size[0] * im_size[1] > pow(2, 64):
+                # big image
+                im = None
+                im_BGR = None
+                print('im=None, im_BGR=None')
+            else:
+                im = im_os.read_region((0, 0), 0,
+                                       im_os.dimensions).convert('RGB')
+                im = np.array(im, dtype=uint8)
+                im_BGR = cv2.cvtColor(im, cv2.COLOR_RGB2BGR)
+        else:
+            messagebox.showerror("Error",
+                                 "Unsupported format without openslide: {}".format(ext))
+            return
+    else:
+        im_BGR = cv2.imread(input_p)
+        if im_BGR is None:
+            messagebox.showerror("Error", "CV2 image read error: image must " +
+                                          "have less than 2^64 pixels")
+            return
+
+        im = cv2.cvtColor(im_BGR, cv2.COLOR_BGR2RGB)
+        im = np.array(im, dtype=np.uint8)
+        im_size = (im.shape[0], im.shape[1])
+
+    if im is not None:
+        output = np.empty((im.shape[0], im.shape[1]))
+        bags = Bag(img=im, size=3600,
+                   overlap_pixel=2400, padded=True)
+    elif openslide_flag.get() and im_BGR is None:  # big image
+        bags = Bag(h=im_size[0],
+                   w=im_size[1], size=3600,
+                   overlap_pixel=2400,
+                   padded=True)
+        output = np.empty(im_size)
+    else:
+        messagebox.showerror("Error", "image read fail")
+        return
     bn = os.path.basename(input_p)
     bn = os.path.splitext(bn)[0]
     feat_outname = os.path.join(os.path.dirname(input_p),
                                 '{}_feat.pkl'.format(bn))
+    # print(feat_outname)
     if os.path.exists(feat_outname):
+        # print('precomputed')
         feat = pickle.load(open(feat_outname, 'rb'))
         precomputed = True
     else:
@@ -111,7 +157,7 @@ def begin_task():
 
     result = np.zeros(len(bags))
     # base = 20
-    for bag, i in bags:
+    for i in range(len(bags)):
         # print('{}/{}'.format(i, len(bags)))
         # cv2.imwrite(os.path.join(output_p, '{}.jpg'. format(i)),
         #             cv2.cvtColor(bag, cv2.COLOR_RGB2BGR))
@@ -121,6 +167,19 @@ def begin_task():
         root.update()
         # base = min(100, base + 10)
         if not precomputed:
+            if bags.img is not None:
+                bag = bags[i][0]
+            else:
+                bbox = bags.bound_box(i)
+                size_r = bbox[1] - bbox[0]
+                size_c = bbox[3] - bbox[2]
+                top_left_x = max(bbox[2] - bags.left, 0)
+                top_left_y = max(bbox[0] - bags.top, 0)
+                top_left = (top_left_x, top_left_y)
+                bag = im_os.read_region(top_left, 0,
+                                        (size_c,
+                                         size_r)).convert('RGB')
+                bag = np.array(bag, dtype=np.uint8)
             try:
                 feat_words = get_feat_from_image(None, False, 120, image=bag)
                 cluster_words = predict_kmeans(feat_words, loaded_kmeans)
@@ -135,10 +194,10 @@ def begin_task():
         result[i] = model_predict(clf, [feat[i, :]])
         # print('result: {}'.format(result[i]))
         bbox = bags.bound_box(i)
-        bbox[0] = max(0, min(bbox[0] - bags.top, im.shape[0] - 1))
-        bbox[1] = max(0, min(bbox[1] - bags.top, im.shape[0] - 1))
-        bbox[2] = max(0, min(bbox[2] - bags.left, im.shape[1] - 1))
-        bbox[3] = max(0, min(bbox[3] - bags.left, im.shape[1] - 1))
+        bbox[0] = max(0, min(bbox[0] - bags.top, im_size[0] - 1))
+        bbox[1] = max(0, min(bbox[1] - bags.top, im_size[0] - 1))
+        bbox[2] = max(0, min(bbox[2] - bags.left, im_size[1] - 1))
+        bbox[3] = max(0, min(bbox[3] - bags.left, im_size[1] - 1))
         output[bbox[0]:bbox[1], bbox[2]:bbox[3]] = result[i]
         # if result[i] == 1:
         #     cv2.imwrite(os.path.join(output_p, '{}_binary.jpg'. format(i)),
@@ -153,10 +212,22 @@ def begin_task():
     pickle.dump(feat, open(feat_outname, 'wb'))
     #binary_outname = os.path.join(output_p, '{}_binary.jpg'.format(bn))
     #cv2.imwrite(binary_outname, output)
+    if im_BGR is None and openslide_flag.get(): 
+        # if image is very large, scale
+        # by 8
+        output = cv2.resize(output, None,
+                            fx=1/8, fy=1/8,
+                            interpolation=cv2.INTER_AREA)
+        im_BGR = im_os.get_thumbnail((im_os.dimensions[0]//8,
+                                      im_os.dimensions[1]//8)).convert('RGB')
+        im_BGR = np.array(im_BGR, dtype=np.uint8)
+        im_BGR = cv2.cvtColor(im_BGR, cv2.COLOR_RGB2BGR)
+
     contours, hierarchy = cv2.findContours(output,
                                            cv2.RETR_TREE,
                                            cv2.CHAIN_APPROX_SIMPLE)
     final = im_BGR.copy()
+
     final = cv2.drawContours(final, contours, -1, (0, 0, 255), 8)
     marked_outname = os.path.join(output_p, '{}_marked.jpg'.format(bn))
     cv2.imwrite(marked_outname, final)

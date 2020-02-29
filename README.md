@@ -10,10 +10,12 @@ For more detail information, please visit <a href="http://cancertech.cs.washingt
 
 # Installation
 
-The installation instructions are shown in Windows operation system. The installation steps are similar for MacOS and Linux.
+The installation instructions are shown in Windows operation system. 
+MacOS or Linux are not fully supported yet.
+
 
 First, you can download our tools from 
-<a href="https://github.com/meredith-wenjunwu/cancer_diagnosis" target="_blank">Github page</a> 
+<a href="https://github.com/cancertech/cancer_diagnosis" target="_blank">Github page</a> 
 by clicking on the "Clone or download" button first and then clicking on the "Download ZIP" button.
 
 
@@ -265,7 +267,7 @@ Again, we will choose the largest value (worst diagnosis prediction) as the fina
 # User Support
 
 If you have any questions, you can visit the 
-<a href="https://github.com/meredith-wenjunwu/cancer_diagnosis/issues" target="_blank">Github issue page</a> 
+<a href="https://github.com/cancertech/cancer_diagnosis/issues" target="_blank">Github issue page</a> 
 and submit an issue via the "New issue" button as shown below.
 
 <img src="docs/tutorial_img/user_issue.jpg" width="40%" align="middle"/>

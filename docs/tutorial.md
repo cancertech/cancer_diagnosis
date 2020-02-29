@@ -176,7 +176,7 @@ Again, we will choose the largest value (worst diagnosis prediction) as the fina
 # User Support
 
 If you have any questions, you can visit the 
-<a href="https://github.com/meredith-wenjunwu/cancer_diagnosis/issues" target="_blank">Github issue page</a> 
+<a href="https://github.com/cancertech/cancer_diagnosis/issues" target="_blank">Github issue page</a> 
 and submit an issue via the "New issue" button as shown below.
 
 <img src="tutorial_img/user_issue.jpg" width="40%" align="middle"/>

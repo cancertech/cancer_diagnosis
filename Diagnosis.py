@@ -62,11 +62,11 @@ def begin_dx_classification():
     
     for k in rst.keys():
         pred, pred_label = rst[k]
-        rst_txt += "%s Preidciton: %d (%s)\n" % (k, pred, pred_label)
+        rst_txt += "%s Prediction: %d (%s)\n" % (k, pred, pred_label)
         preds.append(pred)
         
     max_pred = np.max(preds)
-    rst_txt += "\nFinal Preidciton: %d (%s)\n" % (max_pred, DX_LABELS[max_pred - 1])
+    rst_txt += "\nFinal Prediction: %d (%s)\n" % (max_pred, DX_LABELS[max_pred - 1])
 
     print("Classification All Done!", csv_paths)
     print(results)

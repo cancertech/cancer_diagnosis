@@ -4,16 +4,18 @@ import shutil
 # %%
 web_path = "/cse/web/research/cancertech/"
 files = ["installation", "tutorial"]
-img_dir = "tutorial_img"
+img_dirs = ["tutorial_img", "img_sedeen"]
 # %%  Create README file for the Github Repository
 
 # The readme file is a combination (concatenation) of all MD files in this folder
 readme = open("intro.md", "r").read() + "\n"
 
 for f in files:
+    print("Reading:", f)
     readme += open(f + ".md", "r").read() + "\n"
     
-readme = readme.replace(img_dir, "docs/%s" % img_dir)
+for img_dir in img_dirs:
+    readme = readme.replace(img_dir, "docs/%s" % img_dir)
 
 open("../README.md", "w").write(readme)
 
@@ -35,12 +37,12 @@ if os.path.exists(web_path):
     for f in files:
         html_name = f + ".html"
         shutil.move(html_name, os.path.join(web_path, html_name))
+    os.system("chmod 775 %s/*.html" % web_path)
         
-    for imgname in os.listdir(img_dir):
-        shutil.copy2(os.path.join(img_dir, imgname), os.path.join(web_path, img_dir, imgname))
-        
-    # Grant access to readers for the new html and images
-    os.system("chmod 755 %s/*.html" % web_path)
-    os.system("chmod 755 %s/%s/*" % (web_path, img_dir))
+    for img_dir in img_dirs:
+        for imgname in os.listdir(img_dir):
+            shutil.copy2(os.path.join(img_dir, imgname), os.path.join(web_path, img_dir, imgname))
+        os.system("chmod 775 %s/%s/*" % (web_path, img_dir))
+
 else:
     print("Unable to detect the website path")
